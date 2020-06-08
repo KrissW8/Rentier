@@ -9,10 +9,16 @@ class Flat
         double sellingPrice;
         double costOfRenovate;
         double totalCosts;
+        double rentalCost;
+        double investmentPayOffTime;
+        int rent;
     public:
         Flat ();
         void getCosts();
-        void calculateProfit();
+        void calculateSellProfit();
+        void calculateRentProfit();
+        void investmentType();
+        void calculateInvestmentProfit();
 };
 
 Flat:: Flat()
@@ -25,11 +31,11 @@ void Flat:: getCosts()
 {
     cout << "Enter how much did you pay for this flat: "; cin >> costOfPurchase;
     cout << "Enter how much did you spend for renovate this flat: "; cin >> costOfRenovate;
-    cout << "Enter for how much you sold that flat: "; cin >> sellingPrice;
 }
 
-void Flat:: calculateProfit()
+void Flat:: calculateSellProfit()
 {
+    cout << "So you want to sell a flat!";
     totalCosts = costOfPurchase + costOfRenovate;
     cout << "\n" << "\tTotal costs: " << totalCosts;
     cout << "\n" << "\tYou sold your flat for: " << sellingPrice;
@@ -47,12 +53,47 @@ void Flat:: calculateProfit()
     }
 }
 
+void Flat:: calculateRentProfit()
+{
+    cout << "So you want to rent a flat!\n";
+    cout << "Enter month rental cost: ";
+    cin >> rentalCost;
+    totalCosts = costOfPurchase + costOfRenovate;
+    cout << "\n" << "\tTotal costs: " << totalCosts;
+    cout << "your investment will pay off after: ";
+    investmentPayOffTime = totalCosts/(rentalCost*12);
+    cout << investmentPayOffTime << " years.";
+}
+
+void Flat:: investmentType()
+{
+    cout << "What do you want to do?";
+    cout << "\n1 - Sell your flat";
+    cout << "\n2 - Rent your flat\n";
+    cin >> rent;
+    switch(rent)
+    {
+        case 1: calculateSellProfit();
+        break;
+        case 2: calculateRentProfit();
+        break;
+        default:
+            cout << "You're so indecisive. I will help you by calculating profit from selling this flat.";
+            calculateSellProfit();
+    }
+}
+
+void Flat:: calculateInvestmentProfit()
+{
+    getCosts();
+    investmentType();
+}
+
 int main()
 {
-    cout << "Welcome in Rentier 0.1. Here you will find out if your investment were good choice!\n" << endl;
+    cout << "Welcome in Rentier 0.2. Here you will find out if your investment were good choice!\n" << endl;
     Flat kawalerka1;
-    kawalerka1.getCosts();
-    kawalerka1.calculateProfit();
+    kawalerka1.calculateInvestmentProfit();
     return 0;
 
 }
