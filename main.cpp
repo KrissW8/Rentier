@@ -11,6 +11,7 @@ class Flat
         double totalCosts;
         double rentalCost;
         double investmentPayOffTime;
+        int type;
         int rent;
     public:
         Flat ();
@@ -29,6 +30,17 @@ Flat:: Flat()
 
 void Flat:: getCosts()
 {
+    cout << "Choose what have you bought!";
+    cout << "\n1 - flat";
+    cout << "\n2 - house";
+    cin >> type;
+    switch(type)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    }
     cout << "Enter how much did you pay for this flat: "; cin >> costOfPurchase;
     cout << "Enter how much did you spend for renovate this flat: "; cin >> costOfRenovate;
 }
